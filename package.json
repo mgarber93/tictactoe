@@ -1,0 +1,14 @@
+{
+  "name": "ttt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./tictactoe.js",
+  "scripts": {
+    "start": "node tictactoe.js"
+  },
+  "author": "Matt Garber",
+  "license": "ISC",
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
+}
