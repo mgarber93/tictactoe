@@ -15,6 +15,10 @@ var schema = {
       message: 'Name must be only letters, spaces, or dashes',
       required: true
     }, 
+    rotate: {
+      type: 'boolean',
+      default: false
+    }
   }
 };
 
@@ -29,13 +33,16 @@ var turn = {
   }
 }
 
-const playTurn = (board, {player1, player2, toPlay}) => {
+const playTurn = (board, {player1, player2, toPlay, rotate}) => {
   // see if a winner exists 
   if (detectWinner(board)) {
     // backwards
     console.log(`player ${toPlay === 1 ? player2 : player1} wins!`);
   } else {
     console.log(printBoard(board, toPlay === 1 ? player1 : player2));
+    if (rotate) {
+      board = rotate(board);
+    }
     prompt.get(turn, (err, {x, y}) => {
       if (x < 3 && y < 3 && board[y][x] === 0) {
         board[y][x] = toPlay;
@@ -76,6 +83,10 @@ const printBoard = (board, name) => {
     str += '\n';
   });
   return str;
+};
+
+const rotate = board => {
+  return board;
 };
 
 const makeBoard = function(l = 3) {
